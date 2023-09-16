@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import PaginationItem from "@/components/common/pagination/PaginationItem.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import Fetchable from "@/models/rest/Fetchable.ts";
 
 const {total, perPage, currentPage, lastPage, fetchable} = defineProps<{
     total: number,
@@ -10,7 +11,7 @@ const {total, perPage, currentPage, lastPage, fetchable} = defineProps<{
     fetchable?: Fetchable,
 }>();
 
-// TODO: readd this??
+// TODO: re-add this??
 // const firstPagesCount = ref(5);
 // const maxNavigationSlots = ref(7);
 

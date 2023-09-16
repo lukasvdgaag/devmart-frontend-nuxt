@@ -5,18 +5,19 @@
 </template>
 
 <script lang="ts" setup>
-import Sidebar from '@/components/Common/Sidebar.vue';
-import SidebarItem from '@/components/Common/SidebarItem.vue';
+import Sidebar from '@/components/common/sidebar/Sidebar.vue';
+import SidebarItem from '@/components/common/sidebar/SidebarItem.vue';
+import SidebarItemModel from '@/models/components/SidebarItem.ts';
 import {defineProps} from 'vue';
 
 export interface Props {
     margin: boolean,
-    links: Array
+  links: SidebarItemModel[]
 }
 
 withDefaults(defineProps<Props>(), {
     margin: false,
-    links: []
+  links: () => []
 });
 </script>
 

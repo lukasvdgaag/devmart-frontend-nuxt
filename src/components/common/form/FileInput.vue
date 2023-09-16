@@ -11,21 +11,22 @@
 </template>
 
 <script lang="ts" setup>
-import Input from '@/components/Common/Form/Input.vue';
+import Input from '@/components/common/form/Input.vue';
 import {defineEmits, defineProps} from 'vue';
+import FormErrors from "@/interfaces/FormErrors.ts";
 
 export interface Props {
     modelValue?: string,
     accept?: string,
-    errors?: object,
+  errors?: FormErrors,
     item?: string,
 }
 
 withDefaults(defineProps<Props>(), {
-    modelValue: null,
+  modelValue: undefined,
     accept: '*',
-    errors: {},
-    item: null,
+  item: undefined,
+  errors: () => ({} as FormErrors), // TODO check if this works
 })
 
 const emit = defineEmits(['update:modelValue', 'upload']);

@@ -22,13 +22,13 @@
 </template>
 
 <script lang="ts" setup>
-import DropdownSelectItemModel from '@/models/DropdownSelectItemModel';
+import DropdownSelectItem from '@/models/components/DropdownSelectItem.ts';
 
 const {item, name, id, selectedValue} = defineProps<{
-    item: DropdownSelectItemModel,
+  item: DropdownSelectItem,
     name: string,
     id: string,
-    selectedValue?: DropdownSelectItemModel
+  selectedValue?: DropdownSelectItem
 }>();
 
 defineEmits(['change']);

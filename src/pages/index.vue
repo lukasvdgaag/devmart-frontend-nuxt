@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import Navbar from "../components/common/Navbar.vue";
+import Navbar from "../components/common/navbar/Navbar.vue";
 
 useHead({
     title: (await (await fetch('https://cat-fact.herokuapp.com/facts')).json())[0].text

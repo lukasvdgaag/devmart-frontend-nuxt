@@ -25,16 +25,17 @@
 
 <script lang="ts" setup>
 import DropdownSelectItem from '@/components/Common/Form/DropdownSelectItem.vue';
+import DropdownSelectItemModel from '@/models/components/DropdownSelectItem.ts';
 import Dropdown from '@/components/Common/Form/Dropdown.vue';
-import DropdownSelectItemModel from '@/models/DropdownSelectItemModel';
 import {defineEmits, defineProps} from 'vue';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {Ref} from "@vue/reactivity";
 
 export interface Props {
     modelValue?: DropdownSelectItemModel,
     id: string,
     placeholder?: string,
-    items: Array,
+    items: Array<DropdownSelectItemModel>,
     header?: string,
     description?: string,
     customClass?: string,
@@ -50,10 +51,10 @@ const {modelValue} = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(['update:modelValue']);
 
-let value = modelValue;
+let value: Ref<DropdownSelectItemModel | undefined> = ref(modelValue);
 
-const handleInput = (newValue) => {
-    value = newValue;
+const handleInput = (newValue: DropdownSelectItemModel) => {
+    value.value = newValue;
     emit('update:modelValue', newValue);
 };
 </script>

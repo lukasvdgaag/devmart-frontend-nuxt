@@ -2,7 +2,7 @@
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 export interface Props {
-    icon: string,
+    icon?: string,
     type?: string,
     closable?: boolean
 }

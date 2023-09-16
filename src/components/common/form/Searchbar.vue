@@ -58,10 +58,10 @@ export interface Props {
 const {modelValue, placeholder, disabled, filterButton} = withDefaults(defineProps<Props>(), {
     disabled: false,
 });
-const emit = defineEmits(['update:modelValue', 'clickFilter']);
+const emit = defineEmits(['update:modelValue', 'clickFilter', 'submit']);
 
-const input: Ref<string> = ref(modelValue);
-const inputEmpty = computed(() => input.value.length === 0);
+const input: Ref<string | undefined> = ref(modelValue);
+const inputEmpty = computed(() => input.value?.length === 0);
 
 const updateInput = (value: string) => {
     input.value = value;

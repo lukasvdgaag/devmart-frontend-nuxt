@@ -64,7 +64,7 @@ defineProps<{
     modelValue?: object
 }>();
 
-let timerId = null;
+let timerId: any = null;
 const query: Ref<string> = ref('');
 const users: UnwrapNestedRefs<Array<User>> = reactive([]);
 
@@ -80,7 +80,7 @@ const searchUsers = () => {
     timerId = setTimeout(async () => {
         try {
             users.splice(0, users.length);
-            users.push(await UserRepository.findUsersByUsername(this.query));
+          users.push(await UserRepository.findUsersByUsername(query.value));
         } catch (error) {
             console.error(error);
         }

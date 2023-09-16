@@ -1,4 +1,5 @@
 import axios, {AxiosResponse} from "axios";
+import LoginBody from "@/interfaces/LoginBody.ts";
 
 export const authClient = axios.create({
     headers: {
@@ -8,7 +9,7 @@ export const authClient = axios.create({
 });
 
 export default {
-    async login(payload: any): Promise<AxiosResponse> {
+    async login(payload: LoginBody): Promise<AxiosResponse> {
         await authClient.get("/sanctum/csrf-cookie");
         return authClient.post("/login", payload);
     },

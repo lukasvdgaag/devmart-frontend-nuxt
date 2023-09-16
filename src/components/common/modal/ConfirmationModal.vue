@@ -21,13 +21,14 @@ const {show} = withDefaults(defineProps<Props>(), {
     show: false,
 });
 
-const modal: Ref<Modal> = ref(null);
+const modal: Ref<typeof Modal | undefined> = ref();
 
 defineEmits(['submit', 'cancel']);
 
 onMounted(() => {
-    // TODO: check if it's modal.value.modal or modal.value
-    if (show) modal.value.modal.show();
+    if (show) {
+        modal.value?.flowbiteModal?.show();
+    }
 })
 
 </script>

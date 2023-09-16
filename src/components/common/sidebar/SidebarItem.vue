@@ -1,5 +1,5 @@
 <template>
-    <router-link v-if="item.renderRequirements" :key="item.id"
+  <NuxtLink v-if="item.renderRequirements"
                  :class="{
                   'sidebar-active hover:bg-gray-300 dark:hover:bg-gray-600': isActive(item),
                   'lg:mr-3': marginRight,
@@ -13,30 +13,30 @@
             <font-awesome-icon :icon="item.icon"/>
         </div>
         <div class="preview-link-title">{{ item.label }}</div>
-    </router-link>
+  </NuxtLink>
 </template>
 
 <script lang="ts" setup>
-import SidebarItem from '@/models/SidebarItem';
 import {defineProps} from 'vue';
 import {useRoute} from 'vue-router';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import SidebarItem from "@/models/components/SidebarItem.ts";
 
 export interface Props {
     item: SidebarItem,
-    links?: Array,
+  links?: SidebarItem[],
     marginRight?: boolean,
     highlight?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
+const {links} = withDefaults(defineProps<Props>(), {
     marginRight: true,
     highlight: false,
 })
 
 const route = useRoute();
 
-const isDefault = (item) => {
+const isDefault = (item: SidebarItem) => {
     if (!links) return true;
     const def = links.find((link) => link.isDefault);
     if (!def || def !== item) return false;
@@ -44,14 +44,14 @@ const isDefault = (item) => {
     return links.filter((l) => isActive(l, false)).length === 0;
 };
 
-const isActive = (item, checkForDefault = true) => {
+const isActive = (item: SidebarItem, checkForDefault = true) => {
     if (item.activeRequirements) return true;
     if (checkForDefault && isDefault(item)) return true;
 
     if ('name' in item.link && route.matched.filter((i) => i.name === item.link.name).length === 0) return false;
     if ('query' in item.link) {
         for (const key in item.link.query) {
-            if (route.query[key] !== item.link.query[key]) return false;
+          if (route.query[key] !== item.link.query[key]) return false;
         }
     }
     return true;

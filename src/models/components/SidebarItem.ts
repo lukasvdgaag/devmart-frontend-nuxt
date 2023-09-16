@@ -1,13 +1,13 @@
 export default class SidebarItem {
 
-    link: string;
+    link: any;
     icon: string;
     label: string;
     renderRequirements?: boolean;
     isDefault?: boolean;
     activeRequirements?: boolean;
 
-    constructor(link: string, icon: string, label: string, renderRequirements: boolean = true, isDefault: boolean = false, activeRequirements?: boolean) {
+    constructor(link: any, icon: string, label: string, renderRequirements: boolean = true, isDefault: boolean = false, activeRequirements?: boolean) {
         this.link = link;
         this.icon = icon;
         this.label = label;

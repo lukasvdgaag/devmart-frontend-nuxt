@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import {Modal as FlowbiteModal} from "flowbite";
 import {Ref} from "@vue/reactivity";
+import CancellableEvent from "@/models/components/CancellableEvent.ts";
 
 export interface Props {
     id: string,
@@ -21,36 +22,36 @@ const {id} = withDefaults(defineProps<Props>(), {
     disabled: false,
 });
 
-defineEmits(['cancel', 'submit']);
+const emit = defineEmits(['cancel', 'submit']);
 
-const flowbiteModal: Ref<FlowbiteModal> = ref(null);
-const modal = ref(null);
+const flowbiteModal: Ref<FlowbiteModal | undefined> = ref();
+const modal: Ref<HTMLElement | undefined> = ref();
 
 onMounted(() => {
-    flowbiteModal.value = new FlowbiteModal(modal);
+  flowbiteModal.value = new FlowbiteModal(modal.value);
 
     document.querySelectorAll(`[data-modal-toggle='${id}']`).forEach((e) => {
-        e.addEventListener('click', () => flowbiteModal.value.toggle());
+      e.addEventListener('click', () => flowbiteModal.value?.toggle());
     });
     document.querySelectorAll(`[data-modal-hide='${id}']`).forEach((e) => {
         e.addEventListener('click', () => {
-            if (flowbiteModal.value.isVisible) flowbiteModal.value.hide()
+          if (flowbiteModal.value?.isVisible) flowbiteModal.value?.hide()
         });
     });
     document.querySelectorAll(`[data-modal-show='${id}']`).forEach((e) => {
         e.addEventListener('click', () => {
-            if (flowbiteModal.value.isHidden) flowbiteModal.value.show()
+          if (flowbiteModal.value?.isHidden) flowbiteModal.value?.show()
         });
     });
 });
 
-const handleCancellableEvent = (event: Event, eventName: string) => {
+const handleCancellableEvent = (event: Event, eventName: "cancel" | "submit") => {
     let cancellable = new CancellableEvent();
 
-    this.$emit(eventName, cancellable);
+  emit(eventName, cancellable);
 
     if (!cancellable.isCancelled()) {
-        if (this.modal.isVisible) this.modal.hide();
+      if (flowbiteModal.value?.isVisible) flowbiteModal.value?.hide();
     }
 }
 
@@ -120,7 +121,3 @@ const handleCancellableEvent = (event: Event, eventName: string) => {
         </div>
     </div>
 </template>
-
-<style scoped>
-
-</style>
