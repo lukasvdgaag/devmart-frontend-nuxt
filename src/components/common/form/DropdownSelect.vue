@@ -39,7 +39,7 @@ export interface Props {
     header?: string,
     description?: string,
     customClass?: string,
-    fullWidth?: boolean
+    fullWidth?: boolean,
 }
 
 const {modelValue} = withDefaults(defineProps<Props>(), {

@@ -30,11 +30,12 @@
 <script lang="ts" setup>
 import Input from "@/components/Common/Form/Input.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import FormErrors from "@/interfaces/FormErrors.ts";
 
 const {modelValue, item, errors} = defineProps<{
     modelValue?: string,
     item?: string,
-    errors?: object
+    errors?: FormErrors
 }>();
 defineEmits(['update:modelValue']);
 

@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+import FormErrors from "@/interfaces/FormErrors.ts";
+
 defineProps<{
-    errors: object,
+    errors: FormErrors,
     item: string,
 }>();
 

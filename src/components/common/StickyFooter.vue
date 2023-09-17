@@ -10,7 +10,7 @@
 import {defineProps} from 'vue';
 
 export interface Props {
-    fixed: boolean
+    fixed?: boolean
 }
 
 withDefaults(defineProps<Props>(), {

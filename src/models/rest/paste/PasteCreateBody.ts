@@ -4,9 +4,9 @@ import {PasteVisibility} from "@/models/paste/PasteVisibility.ts";
 export interface PasteCreateBody {
 
     title: string;
-    style: PasteStyle;
-    visibility: PasteVisibility;
-    lifetime: string;
     content: string;
+    style?: PasteStyle;
+    visibility?: PasteVisibility;
+    lifetime?: string;
 
 }

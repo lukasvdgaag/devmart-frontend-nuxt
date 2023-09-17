@@ -16,7 +16,7 @@ export default class Paste {
     updated_at?: Date;
     content?: string;
 
-    constructor(json: Record<string, any>) {
+    constructor(json?: Record<string, any>) {
         this.id = json?.id;
         this.name = json?.name;
         this.creator = json?.creator;
@@ -25,8 +25,9 @@ export default class Paste {
         this.style = PasteStyle[json?.style as keyof typeof PasteStyle];
         this.visibility = PasteVisibility[json?.visibility as keyof typeof PasteVisibility];
         this.lifetime = json?.lifetime;
-        this.expire_at = json.expire_at ? new Date(json.expire_at) : undefined;
-        this.created_at = json.created_at ? new Date(json.created_at) : undefined;
+        this.expire_at = json?.expire_at ? new Date(json.expire_at) : undefined;
+        this.created_at = json?.created_at ? new Date(json.created_at) : undefined;
+        this.updated_at = json?.updated_at ? new Date(json.updated_at) : undefined;
         this.content = json?.content;
     }
 

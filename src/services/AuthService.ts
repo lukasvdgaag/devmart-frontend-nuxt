@@ -1,5 +1,6 @@
 import axios, {AxiosResponse} from "axios";
 import LoginBody from "@/interfaces/LoginBody.ts";
+import {API_BASE_URL} from "@/constants/api.ts";
 
 export const authClient = axios.create({
     headers: {
@@ -9,18 +10,21 @@ export const authClient = axios.create({
 });
 
 export default {
+    async requestCsrfToken(): Promise<void> {
+        await authClient.get(`${API_BASE_URL}/sanctum/csrf-cookie`);
+    },
     async login(payload: LoginBody): Promise<AxiosResponse> {
-        await authClient.get("/sanctum/csrf-cookie");
+        await this.requestCsrfToken();
         return authClient.post("/login", payload);
     },
     logout() {
         return authClient.post("/logout");
     },
     getAuthUser() {
-        return authClient.get("/api/user");
+        return authClient.get(`${API_BASE_URL}/user`);
     },
     async registerUser(payload: any, discordAuthToken: string) {
-        await authClient.get("/sanctum/csrf-cookie");
+        await this.requestCsrfToken();
         return authClient.post(`/register${discordAuthToken ? `?discord_auth_token=${discordAuthToken}` : ''}`, payload);
     }
 }
