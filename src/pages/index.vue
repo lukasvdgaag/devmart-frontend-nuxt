@@ -3,8 +3,12 @@
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import Navbar from "../components/common/navbar/Navbar.vue";
 
+const res = await fetch('https://cat-fact.herokuapp.com/facts');
+const json = await res.json();
+const text = json[0].text;
+
 useHead({
-    title: (await (await fetch('https://cat-fact.herokuapp.com/facts')).json())[0].text
+    title: text
 });
 </script>
 

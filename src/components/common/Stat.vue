@@ -9,8 +9,8 @@
 import {defineProps} from 'vue';
 
 export interface Props {
-    dot: boolean,
-    small: boolean
+    dot?: boolean,
+    small?: boolean
 }
 
 withDefaults(defineProps<Props>(), {

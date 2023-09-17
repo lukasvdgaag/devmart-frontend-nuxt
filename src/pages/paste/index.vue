@@ -86,7 +86,7 @@ const fetchPaste = async () => {
         paste.value = await PasteRepository.fetchPaste(props.pasteId as string);
         if ((!paste.value.creator || paste.value.creator !== useAuth().user?.id) && useAuth().user?.role !== 'admin') {
             paste.value = new Paste();
-            return useRouter().push({name: 'paste'});
+            return useRouter().push('/paste');
         }
 
         selectedVisibility.value = visibilitySelectItems.find(item => {
@@ -97,7 +97,7 @@ const fetchPaste = async () => {
         selectedStyle.value = styleSelectItems.find(item => item.value === paste.value.style);
         setTimeout(onContentScroll, 10);
     } catch (e) {
-        return useRouter().push({name: 'paste'});
+        return useRouter().push('/paste');
     }
 }
 
@@ -279,7 +279,7 @@ watch(() => paste.value.content, onContentScroll);
                                 <button
                                     ref="fullScreenButton"
                                     :style="contentStyling"
-                                    class="top-2 absolute bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:bg-gray-600 py-2 px-3 rounded-md cursor-pointer transition select-none"
+                                    class="top-2 absolute bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 py-2 px-3 rounded-md cursor-pointer transition select-none"
                                     type="button"
                                     @click="toggleFullScreen">
                                     <font-awesome-icon v-if="fullScreen" class="text-gray-900 dark:text-gray-300"

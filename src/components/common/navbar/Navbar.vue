@@ -6,7 +6,7 @@ import {useAuth} from "@/store/authStore.ts";
 import Logo from "@/components/common/Logo.vue";
 
 export interface Props {
-    background: boolean
+    background?: boolean
 }
 
 const {background} = withDefaults(defineProps<Props>(), {
@@ -85,7 +85,7 @@ onMounted(() => {
                                           @click.prevent="switchTheme()"/>
                         </li>
                         <li>
-                            <NavPopupItem :background="background" :to="{name: 'account'}" icon="gear" label="Settings" type="link"/>
+                            <NavPopupItem :background="background" icon="gear" label="Settings" to="/account" type="link"/>
                         </li>
                         <li>
                             <NavPopupItem :background="background" icon="right-from-bracket" label="Sign out" @click.prevent="this.logoutUser()"/>
