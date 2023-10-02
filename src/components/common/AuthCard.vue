@@ -4,7 +4,7 @@
         <p>{{ subheader }}</p>
 
         <div class="w-full sm:max-w-md mt-3 px-6 py-4 bg-white dark:bg-gray-900 sm:rounded-lg">
-            <slot/>
+            <slot />
         </div>
     </div>
 </template>

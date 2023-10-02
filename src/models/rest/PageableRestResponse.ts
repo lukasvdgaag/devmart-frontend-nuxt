@@ -1,4 +1,4 @@
-export default interface PageableRestResponse {
+export interface PageableRestResponse {
 
     total: number;
     currentPage: number;

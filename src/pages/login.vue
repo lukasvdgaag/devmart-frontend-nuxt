@@ -4,17 +4,17 @@
             <form @submit.prevent="login">
                 <a class="button rounded-md primary flex flex-col align-center plain !p-3" href="/login-with-discord">
                     <div class="flex flex-row gap-2">
-                        <font-awesome-icon :icon="['fab', 'discord']" class="icon light"/>
+                        <font-awesome-icon :icon="['fab', 'discord']" class="icon light" />
                         <div class="text-base font-bold">Log in with Discord</div>
                     </div>
                 </a>
 
-                <ValidationError :errors="errors" class="text-center" item="discord"/>
+                <ValidationError :errors="errors" class="text-center" item="discord" />
 
-                <hr/>
+                <hr>
 
                 <div>
-                    <Label for="username" value="Username or Email"/>
+                    <Label for="username" value="Username or Email" />
                     <Input
                         id="username"
                         v-model="data.username"
@@ -27,7 +27,7 @@
                     />
                 </div>
                 <div class="mt-4">
-                    <Label for="password" value="Password"/>
+                    <Label for="password" value="Password" />
                     <Input
                         id="password"
                         v-model="data.password"
@@ -40,28 +40,32 @@
                     />
                 </div>
 
-                <ValidationError :errors="errors" item="username"/>
+                <ValidationError :errors="errors" item="username" />
 
                 <div class="flex flex-row mt-2 center justify-between">
                     <div>
                         <label class="inline-flex items-center h-full" for="remember_me">
-                            <Input id="remember_me" v-model="data.remember" type="checkbox"/>
+                            <Input id="remember_me" v-model="data.remember" type="checkbox" />
                             <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">Remember me</span>
                         </label>
                     </div>
                     <div>
-                        <router-link class="underline static text-sm" to="forgot-password">Forgot your password?</router-link>
+                        <router-link class="underline static text-sm" to="forgot-password">
+                            Forgot your password?
+                        </router-link>
                     </div>
                 </div>
 
                 <div class="flex flex-col items-center justify-end mt-4">
                     <button :disabled="loggingIn" class="primary w-full p-2">
-                        {{ loggingIn ? "Logging you in..." : "Log in" }}
+                        {{ loggingIn ? 'Logging you in...' : 'Log in' }}
                     </button>
                 </div>
                 <div class="mt-4 text-center">
                     No account yet?
-                    <router-link class="static" to="register">Sign up Now!</router-link>
+                    <router-link class="static" to="register">
+                        Sign up Now!
+                    </router-link>
                 </div>
             </form>
         </NuxtLayout>
@@ -69,26 +73,27 @@
 </template>
 
 <script lang="ts" setup>
-import Label from "@/components/Common/Form/Label.vue";
-import Input from "@/components/Common/Form/Input.vue";
-import {useAuth} from "@/store/authStore";
-import ValidationError from "@/components/Common/Form/ValidationError.vue";
-import FormErrors from "@/interfaces/FormErrors.ts";
-import {Ref} from "@vue/reactivity";
-import LoginBody from "@/interfaces/LoginBody.ts";
-import {AxiosResponse} from "axios";
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import { Ref } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Label from '@/components/Common/Form/Label.vue';
+import Input from '@/components/Common/Form/Input.vue';
+import { useAuth } from '@/store/authStore';
+import ValidationError from '@/components/Common/Form/ValidationError.vue';
+import { FormErrors } from '@/interfaces/FormErrors.ts';
+import { LoginBody } from '@/interfaces/LoginBody.ts';
 
 const errors: Ref<FormErrors> = ref({});
 const data: LoginBody = reactive({
-    username: "",
-    password: "",
-    remember: false,
+    username: '',
+    password: '',
+    remember: false
 });
 const loggingIn: Ref<boolean> = ref(false);
 
 const login = async () => {
-    if (loggingIn.value) return;
+    if (loggingIn.value) {
+        return;
+    }
     loggingIn.value = true;
 
     try {
@@ -104,7 +109,7 @@ const login = async () => {
         } else {
             errors.value = response.data.errors ?? {};
         }
-    } catch (e: AxiosResponse | any) {
+    } catch (e: any) {
         errors.value = e?.response?.data?.errors ?? {};
     }
 
@@ -112,9 +117,9 @@ const login = async () => {
 };
 
 onBeforeMount(() => {
-    if (useRoute().query?.error === "discord") {
+    if (useRoute().query?.error === 'discord') {
         errors.value = {
-            discord: ["No account found with this Discord account!"],
+            discord: ['No account found with this Discord account!']
         };
     }
 });

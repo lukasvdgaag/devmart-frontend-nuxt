@@ -1,5 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
 
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin(() => {
     axios.defaults.withCredentials = true;
 });

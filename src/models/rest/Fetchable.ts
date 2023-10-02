@@ -1,5 +1,4 @@
 export default class Fetchable {
-
     query: string;
     page: number;
     loading: boolean;
@@ -29,7 +28,9 @@ export default class Fetchable {
 
     async navigateToPage(page: number | string, thisArg: object = this): Promise<void> {
         this.page = typeof page === 'string' ? parseInt(page) : page;
-        if (!this.canRequest()) return;
+        if (!this.canRequest()) {
+            return;
+        }
 
         await useRouter().isReady();
         await useRouter().replace({
@@ -67,5 +68,4 @@ export default class Fetchable {
     finish(): void {
         this.loading = false;
     }
-
 }

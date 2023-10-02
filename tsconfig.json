@@ -1,12 +1,13 @@
 {
-  // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json",
-  "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
+    // https://nuxt.com/docs/guide/concepts/typescript
+    "extends": "./.nuxt/tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "allowImportingTsExtensions": true,
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        }
     }
-  }
 }

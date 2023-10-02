@@ -1,12 +1,14 @@
 <template>
     <label :class="{small: small}" class="switch mt-0">
-        <input :id="id"
-               :checked="checked"
-               :name="name"
-               :value="modelValue"
-               type="checkbox"
-               @change="this.$emit('update:modelValue', $event.target.checked)">
-        <span class="slider"></span>
+        <input
+            :id="id"
+            :checked="checked"
+            :name="name"
+            :value="modelValue"
+            type="checkbox"
+            @change="$emit('update:modelValue', $event.target.checked)"
+        >
+        <span class="slider" />
     </label>
 </template>
 
@@ -23,8 +25,10 @@ export interface Props {
 withDefaults(defineProps<Props>(), {
     modelValue: false,
     checked: false,
-    small: false,
+    small: false
 });
+
+defineEmits(['update:modelValue']);
 </script>
 
 <style scoped>

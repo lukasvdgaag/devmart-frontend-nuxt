@@ -1,4 +1,4 @@
-export default interface PluginUpdate {
+export interface PluginUpdate {
 
     id: number;
     plugin: number;

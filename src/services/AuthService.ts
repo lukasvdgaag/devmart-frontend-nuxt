@@ -1,10 +1,10 @@
-import axios, {AxiosResponse} from "axios";
-import LoginBody from "@/interfaces/LoginBody.ts";
-import {API_BASE_URL} from "@/constants/api.ts";
+import axios, { AxiosResponse } from 'axios';
+import { LoginBody } from '@/interfaces/LoginBody';
+import { API_BASE_URL } from '@/constants/api';
 
 export const authClient = axios.create({
     headers: {
-        "X-Requested-With": "XMLHttpRequest",
+        'X-Requested-With': 'XMLHttpRequest'
     },
     withCredentials: true
 });
@@ -15,10 +15,10 @@ export default {
     },
     async login(payload: LoginBody): Promise<AxiosResponse> {
         await this.requestCsrfToken();
-        return authClient.post("/login", payload);
+        return authClient.post('/login', payload);
     },
     logout() {
-        return authClient.post("/logout");
+        return authClient.post('/logout');
     },
     getAuthUser() {
         return authClient.get(`${API_BASE_URL}/user`);
@@ -27,4 +27,4 @@ export default {
         await this.requestCsrfToken();
         return authClient.post(`/register${discordAuthToken ? `?discord_auth_token=${discordAuthToken}` : ''}`, payload);
     }
-}
+};

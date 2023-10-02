@@ -1,8 +1,7 @@
 export enum AccountTheme {
 
-    Dark = "DARK",
-    Light = "LIGHT",
-    System = "SYSTEM"
+    Dark = 'DARK',
+    Light = 'LIGHT',
+    System = 'SYSTEM'
 
 }
-

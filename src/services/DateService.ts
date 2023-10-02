@@ -21,7 +21,10 @@ export default {
 
     formatDate(date: Date): string {
         // format the date in format Month Day, e.g. January 1
-        return new Intl.DateTimeFormat('en-US', {month: 'long', day: 'numeric'}).format(date);
+        return new Intl.DateTimeFormat('en-US', {
+            month: 'long',
+            day: 'numeric'
+        }).format(date);
     },
 
     formatTimeLeft(date: Date, firstOnly: boolean = false): string {
@@ -35,16 +38,24 @@ export default {
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
         if (days > 0) {
-            if (firstOnly) return `${days} day${days > 1 ? 's' : ''} left`;
+            if (firstOnly) {
+                return `${days} day${days > 1 ? 's' : ''} left`;
+            }
             return `${days}d ${hours}h ${minutes}m ${seconds}s left`;
         } else if (hours > 0) {
-            if (firstOnly) return `${hours} hour${hours > 1 ? 's' : ''} left`;
+            if (firstOnly) {
+                return `${hours} hour${hours > 1 ? 's' : ''} left`;
+            }
             return `${hours}h ${minutes}m ${seconds}s left`;
         } else if (minutes > 0) {
-            if (firstOnly) return `${minutes} minute${minutes > 1 ? 's' : ''} left`;
+            if (firstOnly) {
+                return `${minutes} minute${minutes > 1 ? 's' : ''} left`;
+            }
             return `${minutes}m ${seconds}s left`;
         } else {
-            if (firstOnly) return `${seconds} second${seconds > 1 ? 's' : ''} left`;
+            if (firstOnly) {
+                return `${seconds} second${seconds > 1 ? 's' : ''} left`;
+            }
             return `${seconds}s left`;
         }
     },
@@ -61,7 +72,7 @@ export default {
         const years = Math.floor(diff / (1000 * 3600 * 24 * 365));
 
         if (years >= 1) {
-            `${years} year${years > 1 ? 's' : ''} ago`
+            `${years} year${years > 1 ? 's' : ''} ago`;
         }
         if (months >= 1) {
             return `${months} month${months > 1 ? 's' : ''} ago`;
@@ -109,7 +120,11 @@ export default {
 
     formatTime(date: Date): string {
         // format the time in 12h format, e.g. 12:00 PM
-        return new Intl.DateTimeFormat('en-US', {hour: 'numeric', minute: 'numeric', hour12: true}).format(date);
+        return new Intl.DateTimeFormat('en-US', {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+        }).format(date);
     },
 
     /**
@@ -122,5 +137,4 @@ export default {
         return `${this.formatDate(date)}${withYear ? `, ${date.getFullYear()}` : ''} at ${this.formatTime(date)}`;
     }
 
-
-}
+};

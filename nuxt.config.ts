@@ -1,17 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    devtools: {enabled: false},
+    devtools: { enabled: false },
     css: ['~/assets/css/input.css', '@fortawesome/fontawesome-svg-core/styles.css'],
     srcDir: 'src',
     modules: [
         '@nuxtjs/tailwindcss',
-        '@pinia/nuxt'
+        '@pinia/nuxt',
+        '@nuxtjs/eslint-module'
     ],
     postcss: {
         plugins: {
             tailwindcss: {},
-            autoprefixer: {},
-        },
+            autoprefixer: {}
+        }
     },
     build: {
         transpile: [
@@ -21,5 +22,5 @@ export default defineNuxtConfig({
             '@fortawesome/free-regular-svg-icons',
             '@fortawesome/free-brands-svg-icons'
         ]
-    },
-})
+    }
+});

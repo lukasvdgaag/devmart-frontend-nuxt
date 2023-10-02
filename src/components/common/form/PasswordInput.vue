@@ -11,7 +11,7 @@
             name="password"
             placeholder="Password"
             required
-            @update:modelValue="$emit('update:modelValue', $event)"
+            @update:model-value="$emit('update:modelValue', $event)"
         />
         <button
             class="absolute top-1/2 -translate-y-1/2 right-4 h-6 w-6 block p-0"
@@ -28,11 +28,15 @@
 </template>
 
 <script lang="ts" setup>
-import Input from "@/components/Common/Form/Input.vue";
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import FormErrors from "@/interfaces/FormErrors.ts";
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Input from '@/components/Common/Form/Input.vue';
+import { FormErrors } from '@/interfaces/FormErrors.ts';
 
-const {modelValue, item, errors} = defineProps<{
+const {
+    modelValue,
+    item,
+    errors
+} = defineProps<{
     modelValue?: string,
     item?: string,
     errors?: FormErrors

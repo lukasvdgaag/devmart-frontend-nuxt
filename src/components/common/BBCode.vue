@@ -1,17 +1,11 @@
 <template>
-    <div class="bbcode markdown" v-html="bbCodeParser.parse(source)"></div>
+    <div class="bbcode markdown" v-html="BBCodeService.parse(source)" />
 </template>
 
 <script lang="ts" setup>
-import BBCodeParser from '@/services/BBCodeParser';
-import {defineProps} from 'vue';
+import BBCodeService from '@/services/BBCodeService';
 
 defineProps<{
     source: string
 }>();
-
-const bbCodeParser = new BBCodeParser();
 </script>
-
-<style scoped>
-</style>

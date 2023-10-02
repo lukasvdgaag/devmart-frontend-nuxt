@@ -1,5 +1,4 @@
 export default class DropdownSelectItem {
-
     text: string;
     helperText?: string | null;
     value?: string | null;
@@ -11,5 +10,4 @@ export default class DropdownSelectItem {
         this.value = value;
         this.display = display;
     }
-
 }

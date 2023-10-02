@@ -1,7 +1,7 @@
 export enum PasteVisibility {
 
-    PUBLIC,
-    HIDDEN,
-    PRIVATE
+    PUBLIC = 'PUBLIC',
+    HIDDEN = 'HIDDEN',
+    PRIVATE = 'PRIVATE'
 
 }

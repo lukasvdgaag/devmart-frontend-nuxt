@@ -1,9 +1,8 @@
-import PluginUpdate from "@/models/plugin/PluginUpdate.ts";
-import PluginSale from "@/models/plugin/PluginSale.ts";
-import DateService from "@/services/DateService.ts";
+import { PluginUpdate } from '@/models/plugin/PluginUpdate.ts';
+import { PluginSale } from '@/models/plugin/PluginSale.ts';
+import DateService from '@/services/DateService.ts';
 
 export default class Plugin {
-
     id: number;
     name: string;
     description: string;
@@ -62,7 +61,7 @@ export default class Plugin {
     }
 
     canBePurchased(): boolean {
-        return this.price > 0 || this.custom
+        return this.price > 0 || this.custom;
     }
 
     getLogoUrl(): string {
@@ -88,5 +87,4 @@ export default class Plugin {
             return `/assets/storage/${this.banner_url}`;
         }
     }
-
 }

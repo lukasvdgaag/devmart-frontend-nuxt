@@ -1,5 +1,5 @@
-import {PasteStyle} from "@/models/paste/PasteStyle.ts";
-import {PasteVisibility} from "@/models/paste/PasteVisibility.ts";
+import { PasteStyle } from '@/models/paste/PasteStyle.ts';
+import { PasteVisibility } from '@/models/paste/PasteVisibility.ts';
 
 export interface PasteCreateBody {
 

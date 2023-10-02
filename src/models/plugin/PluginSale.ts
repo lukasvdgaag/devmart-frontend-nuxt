@@ -1,4 +1,4 @@
-export default interface PluginSale {
+export interface PluginSale {
 
     percentage: number;
     start_date: string;

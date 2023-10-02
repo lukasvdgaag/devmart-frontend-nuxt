@@ -1,0 +1,60 @@
+{
+    "root": true,
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+        "sourceType": "module",
+        "parser": "@typescript-eslint/parser",
+        "ecmaVersion": "latest"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "vue"
+    ],
+    "extends": [
+        "@nuxtjs/eslint-config-typescript",
+        "plugin:vue/vue3-recommended",
+        "plugin:vue/vue3-strongly-recommended"
+    ],
+    "rules": {
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": [
+            "error"
+        ],
+        "jsx-no-lambda": 0,
+        "import-name": 0,
+        "class-methods-use-this": 0,
+        "no-underscore-dangle": 0,
+        "no-unused-vars": "off",
+        "no-console": 0,
+        "no-shadow": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "import/prefer-default-export": 0,
+        "import/no-extraneous-dependencies": 0,
+        "import/no-unresolved": 0,
+        "import/named": "off",
+        "no-unused-expressions": 0,
+        "indent": [
+            "error",
+            4
+        ],
+        "vue/html-indent": [
+            "error",
+            4
+        ],
+        "vue/multi-word-component-names": "off",
+        "semi": [
+            2,
+            "always"
+        ],
+        "space-before-function-paren": [
+            "error",
+            {
+                "anonymous": "always",
+                "named": "never",
+                "asyncArrow": "always"
+            }
+        ],
+        "vue/require-default-prop": "off",
+        "vue/no-v-html": "off"
+    }
+}

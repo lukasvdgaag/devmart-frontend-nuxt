@@ -1,14 +1,13 @@
-import {AccountTheme} from "./AccountTheme.ts";
+import { AccountTheme } from './AccountTheme.ts';
 
 export default class User {
-
     id?: number;
     username?: string;
     email?: string;
     email_verified_at?: Date;
     discord_id?: string;
     discord_verified?: boolean;
-    role: string = "user";
+    role: string = 'user';
     theme: AccountTheme = AccountTheme.System;
     username_changed_at?: Date;
     spigot?: string;
@@ -24,7 +23,7 @@ export default class User {
         this.email_verified_at = json.email_verified_at ? new Date(json.email_verified_at) : undefined;
         this.discord_id = json.discord_id ?? undefined;
         this.discord_verified = json.discord_verified === 1;
-        this.role = json.role ?? "user";
+        this.role = json.role ?? 'user';
         this.theme = AccountTheme[json.theme as keyof typeof AccountTheme] ?? AccountTheme.System;
         this.username_changed_at = json.username_changed_at ? new Date(json.username_changed_at) : undefined;
         this.spigot = json.spigot ?? undefined;
@@ -35,12 +34,13 @@ export default class User {
     }
 
     static fromJson(json: Record<string, any>): User | null {
-        if (!json) return null;
+        if (!json) {
+            return null;
+        }
         return new User(json);
     }
 
     isAdmin(): boolean {
         return this.role === 'admin';
     }
-
 }

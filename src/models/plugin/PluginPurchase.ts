@@ -1,4 +1,4 @@
-export default interface PluginPurchase {
+export interface PluginPurchase {
 
     id: number;
     user_id: number;

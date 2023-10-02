@@ -1,6 +1,6 @@
 <template>
     <Sidebar :margin="margin">
-        <SidebarItem v-for="item in links" :key="item.id" :item="item" :links="links"/>
+        <SidebarItem v-for="item in links" :key="item.link" :item="item" :links="links" />
     </Sidebar>
 </template>
 
@@ -8,16 +8,15 @@
 import Sidebar from '@/components/common/sidebar/Sidebar.vue';
 import SidebarItem from '@/components/common/sidebar/SidebarItem.vue';
 import SidebarItemModel from '@/models/components/SidebarItem.ts';
-import {defineProps} from 'vue';
 
 export interface Props {
     margin: boolean,
-  links: SidebarItemModel[]
+    links: SidebarItemModel[]
 }
 
 withDefaults(defineProps<Props>(), {
     margin: false,
-  links: () => []
+    links: () => []
 });
 </script>
 

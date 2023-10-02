@@ -1,56 +1,74 @@
-import axios, {AxiosResponse} from "axios";
-import {PluginFilter} from "@/models/rest/plugin/PluginFilter.ts";
-import Plugin from "@/models/plugin/Plugin.ts";
-import PluginListResponse from "@/models/rest/plugin/PluginListResponse.ts";
-import PluginUpdate from "@/models/plugin/PluginUpdate.ts";
-import PluginUpdatesResponse from "@/models/rest/plugin/PluginUpdatesResponse.ts";
-import PluginPurchasesResponse from "@/models/rest/plugin/PluginPurchasesResponse.ts";
-import PluginPurchase from "@/models/plugin/PluginPurchase.ts";
-import {PluginPermissions} from "@/models/plugin/PluginPermissions.ts";
-import {API_BASE_URL} from "@/constants/api.ts";
+import axios, { AxiosResponse } from 'axios';
+import { PluginFilter } from '@/models/rest/plugin/PluginFilter.ts';
+import Plugin from '@/models/plugin/Plugin.ts';
+import { PluginListResponse } from '@/models/rest/plugin/PluginListResponse.ts';
+import { PluginUpdate } from '@/models/plugin/PluginUpdate.ts';
+import { PluginUpdatesResponse } from '@/models/rest/plugin/PluginUpdatesResponse.ts';
+import { PluginPurchasesResponse } from '@/models/rest/plugin/PluginPurchasesResponse.ts';
+import { PluginPurchase } from '@/models/plugin/PluginPurchase.ts';
+import { PluginPermissions } from '@/models/plugin/PluginPermissions.ts';
+import { API_BASE_URL } from '@/constants/api.ts';
 
 export const client = axios.create({
     baseURL: `${API_BASE_URL}/plugins`,
     headers: {
-        "X-Requested-With": "XMLHttpRequest",
+        'X-Requested-With': 'XMLHttpRequest'
     },
     withCredentials: true
 });
 
 const loadParams = (user: number | undefined, query: string | undefined, from: Date | undefined, to: Date | undefined, page: number | undefined,
-                    perPage: number | undefined, sum: boolean | undefined, compareFrom: Date | undefined = undefined, compareTo: Date | undefined = undefined) => {
+    perPage: number | undefined, sum: boolean | undefined, compareFrom: Date | undefined = undefined, compareTo: Date | undefined = undefined) => {
     const params = {} as any;
-    if (query) params.query = query;
-    if (user) params.user = user;
-    if (from) params.from = from.toISOString();
-    if (to) params.to = to.toISOString();
-    if (page) params.page = page;
-    if (perPage) params.perPage = perPage;
-    if (sum != null) params.sum = sum ? 1 : 0;
-    if (compareFrom) params.compareFrom = compareFrom.toISOString();
-    if (compareTo) params.compareTo = compareTo.toISOString();
+    if (query) {
+        params.query = query;
+    }
+    if (user) {
+        params.user = user;
+    }
+    if (from) {
+        params.from = from.toISOString();
+    }
+    if (to) {
+        params.to = to.toISOString();
+    }
+    if (page) {
+        params.page = page;
+    }
+    if (perPage) {
+        params.perPage = perPage;
+    }
+    if (sum != null) {
+        params.sum = sum ? 1 : 0;
+    }
+    if (compareFrom) {
+        params.compareFrom = compareFrom.toISOString();
+    }
+    if (compareTo) {
+        params.compareTo = compareTo.toISOString();
+    }
     return params;
-}
+};
 
 export default {
     async fetchSales(user: number | undefined = undefined, query: string | undefined = undefined, page: number = 1,
-                     from: Date | undefined = undefined, to: Date | undefined = undefined, perPage: number | undefined = undefined,
-                     sum: boolean | undefined = undefined): Promise<AxiosResponse> {
-        return await client.get("/sales", {
+        from: Date | undefined = undefined, to: Date | undefined = undefined, perPage: number | undefined = undefined,
+        sum: boolean | undefined = undefined): Promise<AxiosResponse> {
+        return await client.get('/sales', {
             params: loadParams(user, query, from, to, page, perPage, sum)
         });
     },
 
     async fetchSalesSum(user: number | undefined = undefined, from: Date | undefined = undefined, to: Date | undefined = undefined,
-                        compareFrom: Date | undefined = undefined, compareTo: Date | undefined = undefined): Promise<AxiosResponse> {
-        return await client.get("/sales", {
+        compareFrom: Date | undefined = undefined, compareTo: Date | undefined = undefined): Promise<AxiosResponse> {
+        return await client.get('/sales', {
             params: loadParams(user, undefined, from, to, undefined, undefined, true, compareFrom, compareTo)
         });
     },
 
     async fetchDailySales(user: number | undefined = undefined, query: string | undefined = undefined, from: Date | undefined = undefined,
-                          to: Date | undefined = undefined, records: number | undefined = undefined): Promise<AxiosResponse> {
-        return await client.get("/sales/daily", {
+        to: Date | undefined = undefined, records: number | undefined = undefined): Promise<AxiosResponse> {
+        return await client.get('/sales/daily', {
             params: loadParams(user, query, from, to, records, undefined, undefined)
         });
     },
@@ -66,8 +84,8 @@ export default {
         });
         const data = res.data;
 
-        let plugins: Plugin[] = [];
-        for (let plugin of data.plugins) {
+        const plugins: Plugin[] = [];
+        for (const plugin of data.plugins) {
             plugins.push(new Plugin(plugin));
         }
         return {
@@ -82,13 +100,13 @@ export default {
         const res = await client.get(`/${pluginId}/updates`, {
             params: {
                 page,
-                perPage,
+                perPage
             }
         });
         const data = res.data;
 
-        let updates: PluginUpdate[] = [];
-        for (let update of res.data.updates) {
+        const updates: PluginUpdate[] = [];
+        for (const update of res.data.updates) {
             updates.push(update as PluginUpdate);
         }
 
@@ -97,11 +115,11 @@ export default {
             currentPage: data.currentPage,
             pages: data.pages,
             updates
-        }
+        };
     },
 
     async fetchPluginPurchases(pluginId: number, page: number = 1, perPage: number = 15, query: number | undefined = undefined,
-                               from: Date | undefined = undefined, to: Date | undefined = undefined): Promise<PluginPurchasesResponse> {
+        from: Date | undefined = undefined, to: Date | undefined = undefined): Promise<PluginPurchasesResponse> {
         const res = await client.get(`/${pluginId}/transactions`, {
             params: {
                 page,
@@ -113,8 +131,8 @@ export default {
         });
         const data = res.data;
 
-        let purchases: PluginPurchase[] = [];
-        for (let purchase of res.data.transactions) {
+        const purchases: PluginPurchase[] = [];
+        for (const purchase of res.data.transactions) {
             purchases.push(purchase as PluginPurchase);
         }
 
@@ -123,7 +141,7 @@ export default {
             currentPage: data.currentPage,
             pages: data.pages,
             purchases
-        }
+        };
     },
 
     async fetchPluginUpdate(updateId: number): Promise<PluginUpdate> {
@@ -132,7 +150,7 @@ export default {
     },
 
     async fetchPlugin(pluginId: number, featuresField: boolean = false, saleField: boolean = true, totalDownloadsField: boolean = true,
-                      authorNameField: boolean = true): Promise<Plugin> {
+        authorNameField: boolean = true): Promise<Plugin> {
         const res = await client.get(`/${pluginId}`, {
             params: {
                 featuresField,
@@ -174,4 +192,4 @@ export default {
         return await client.delete(`/${pluginId}/access/${userId}`);
     }
 
-}
+};

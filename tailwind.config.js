@@ -1,32 +1,34 @@
 /** @type {import('tailwindcss').Config} */
+import generated from '@headlessui/tailwindcss';
+
 module.exports = {
     content: [
-        "./components/**/*.{js,vue,ts}",
-        "./layouts/**/*.vue",
-        "./pages/**/*.vue",
-        "./plugins/**/*.{js,ts}",
-        "./nuxt.config.{js,ts}",
-        "./node_modules/flowbite/**/*.js",
+        './components/**/*.{js,vue,ts}',
+        './layouts/**/*.vue',
+        './pages/**/*.vue',
+        './plugins/**/*.{js,ts}',
+        './nuxt.config.{js,ts}',
+        './node_modules/flowbite/**/*.js'
     ],
     darkMode: 'class',
     theme: {
         extend: {
             borderWidth: {
-                '3': '3px',
+                3: '3px'
             },
             zIndex: {
-                '1': '1',
+                1: '1'
             },
             width: {
-                '22': '5.5rem',
+                22: '5.5rem'
             },
             height: {
-                '22': '5.5rem',
+                22: '5.5rem'
             },
             fontFamily: {
-                'roboto': ['Roboto', 'Arial', 'sans-serif'],
-                'mono': ['monospace', 'Arial', 'sans-serif'],
-                'poppins': ['Poppins', 'Roboto', 'Arial', 'sans-serif'],
+                roboto: ['Roboto', 'Arial', 'sans-serif'],
+                mono: ['monospace', 'Arial', 'sans-serif'],
+                poppins: ['Poppins', 'Roboto', 'Arial', 'sans-serif']
                 // 'sans': ['Nunito', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
             },
             minWidth: {
@@ -43,7 +45,7 @@ module.exports = {
                 11: '2.75rem',
                 12: '3rem',
                 24: '6rem',
-                60: '15rem',
+                60: '15rem'
             },
             minHeight: {
                 'screen-1/2': '50vh',
@@ -59,14 +61,14 @@ module.exports = {
                 10: '2.5rem',
                 11: '2.75rem',
                 12: '3rem',
-                24: '6rem',
+                24: '6rem'
             },
             listStyleType: {
-                'square': 'square',
-                'circle': 'circle',
+                square: 'square',
+                circle: 'circle'
             },
             textDecorationStyle: {
-                'none': 'none',
+                none: 'none'
             },
             colors: {
                 white: '#FFFFFF',
@@ -96,7 +98,7 @@ module.exports = {
                     600: '#52606D',
                     700: '#3E4C59',
                     800: '#323F4B',
-                    900: '#1F2933',
+                    900: '#1F2933'
                 },
 
                 gray: {
@@ -111,7 +113,7 @@ module.exports = {
                     600: '#4b5563',
                     700: '#374151',
                     800: '#1f2937',
-                    900: '#111827',
+                    900: '#111827'
                 },
 
                 indigo: {
@@ -124,7 +126,7 @@ module.exports = {
                     600: '#4055A8',
                     700: '#35469C',
                     800: '#2D3A8C',
-                    900: '#19216C',
+                    900: '#19216C'
                 },
 
                 red: {
@@ -137,7 +139,7 @@ module.exports = {
                     600: '#A61B1B',
                     700: '#911111',
                     800: '#780A0A',
-                    900: '#610404',
+                    900: '#610404'
                 },
 
                 yellow: {
@@ -150,7 +152,7 @@ module.exports = {
                     600: '#C99A2E',
                     700: '#A27C1A',
                     800: '#7C5E10',
-                    900: '#513C06',
+                    900: '#513C06'
                 },
 
                 green: {
@@ -163,13 +165,13 @@ module.exports = {
                     600: '#2F8132',
                     700: '#207227',
                     800: '#0E5814',
-                    900: '#05400A',
-                },
-            },
-        },
+                    900: '#05400A'
+                }
+            }
+        }
     },
     plugins: [
         require('flowbite/plugin'),
-        require('@headlessui/tailwindcss')({prefix: 'ui'})
-    ],
-}
+        generated({ prefix: 'ui' })
+    ]
+};

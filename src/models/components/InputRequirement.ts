@@ -1,4 +1,4 @@
-export default interface InputRequirement {
-    type: "min" | "max" | "regex" | "type",
+export interface InputRequirement {
+    type: 'min' | 'max' | 'regex' | 'type',
     value: string | number | RegExp,
 }

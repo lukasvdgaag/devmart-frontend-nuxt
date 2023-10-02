@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 export interface Props {
     type?: string,
@@ -11,7 +11,7 @@ export interface Props {
 
 withDefaults(defineProps<Props>(), {
     type: 'button',
-    background: false,
+    background: false
 });
 </script>
 
@@ -20,12 +20,13 @@ withDefaults(defineProps<Props>(), {
         v-if="type === 'button'"
         :class="[background ? 'navbar-popup-item-nobg': 'navbar-popup-item-bg']"
         class="navbar-popup-item"
-        type="button">
-        <font-awesome-icon :icon="icon" class="text-xs min-w-3"/>
+        type="button"
+    >
+        <font-awesome-icon :icon="icon" class="text-xs min-w-3" />
         <span>{{ label }}</span>
     </button>
     <NuxtLink v-else :class="[background ? 'navbar-popup-item-nobg': 'navbar-popup-item-bg']" :to="to" class="navbar-popup-item plain">
-        <font-awesome-icon :icon="icon" class="text-xs min-w-3"/>
+        <font-awesome-icon :icon="icon" class="text-xs min-w-3" />
         <span>{{ label }}</span>
     </NuxtLink>
 </template>

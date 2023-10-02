@@ -1,5 +1,4 @@
 export default class CancellableEvent {
-
     private cancelled: boolean;
 
     constructor(cancelled: boolean = false) {
@@ -13,6 +12,4 @@ export default class CancellableEvent {
     isCancelled(): boolean {
         return this.cancelled;
     }
-
-
 }

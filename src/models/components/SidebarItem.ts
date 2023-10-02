@@ -1,5 +1,4 @@
 export default class SidebarItem {
-
     link: any;
     icon: string;
     label: string;
@@ -19,5 +18,4 @@ export default class SidebarItem {
     static isQueryParam(key: string, value: string): boolean {
         return useRouter().currentRoute.value.query[key] === value;
     }
-
 }

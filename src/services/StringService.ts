@@ -1,4 +1,4 @@
-import {RouteLocation} from "vue-router";
+import { RouteLocation } from 'vue-router';
 
 export default {
 
@@ -24,7 +24,7 @@ export default {
     },
 
     async getBase64(file: File): Promise<string | null> {
-        return new Promise((resolve, reject) => {
+        return await new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = () => resolve(reader.result as string | null);
@@ -34,7 +34,9 @@ export default {
 
     formatFileSize(bytes: number, decimals: number = 2): string {
         // format the file size in bytes to a readable format
-        if (bytes === 0) return '0 B';
+        if (bytes === 0) {
+            return '0 B';
+        }
 
         const k = 1024;
         const dm = decimals < 0 ? 0 : decimals;
@@ -50,4 +52,4 @@ export default {
         return route.meta?.name ?? (name === '' ? 'Introduction' : name);
     }
 
-}
+};
