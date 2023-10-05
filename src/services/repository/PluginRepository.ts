@@ -7,10 +7,10 @@ import { PluginUpdatesResponse } from '@/models/rest/plugin/PluginUpdatesRespons
 import { PluginPurchasesResponse } from '@/models/rest/plugin/PluginPurchasesResponse.ts';
 import { PluginPurchase } from '@/models/plugin/PluginPurchase.ts';
 import { PluginPermissions } from '@/models/plugin/PluginPermissions.ts';
-import { API_BASE_URL } from '@/constants/api.ts';
+import { API_PLUGINS_URL } from '@/constants/api.ts';
 
 export const client = axios.create({
-    baseURL: `${API_BASE_URL}/plugins`,
+    baseURL: API_PLUGINS_URL,
     headers: {
         'X-Requested-With': 'XMLHttpRequest'
     },
@@ -74,7 +74,7 @@ export default {
     },
 
     async fetchPlugins(filter: PluginFilter = PluginFilter.ALL, query: string = '', page: number = 1, perPage: number = 6): Promise<PluginListResponse> {
-        const res = await axios.get(client.defaults.baseURL as string, {
+        const res = await axios.get(API_PLUGINS_URL, {
             params: {
                 filter,
                 query,

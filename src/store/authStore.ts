@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import AuthService from '@/services/AuthService';
-import User from '@/models/user/User';
+import { User } from '@/models/user/User';
 import { AccountTheme } from '@/models/user/AccountTheme';
 import { LoginBody } from '@/interfaces/LoginBody.ts';
+import { UserRole } from '@/models/user/UserRole.ts';
 
 export const useAuth = defineStore({
     id: 'authStore',
@@ -32,25 +33,25 @@ export const useAuth = defineStore({
                 this.error = error;
             }
         },
-        async getAuthUser(force = false): Promise<User | Error> {
+        async getAuthUser(force = false): Promise<User | null> {
             if (!force && this.loaded) {
-                return this.user as User;
+                return this.user;
             }
             try {
                 const res = await AuthService.getAuthUser();
                 this.user = User.fromJson(res.data.data);
                 this.loaded = true;
                 return this.user as User;
-            } catch (error) {
+            } catch (error: AxiosError | any) {
                 this.user = null;
                 this.loaded = true;
-                this.error = error;
-                return error as Error;
+                this.error = error.response.data.errors;
+                return null;
             }
         },
         applyTheme(theme: AccountTheme | undefined = undefined): void {
             if (!theme) {
-                theme = this.user?.theme ?? AccountTheme.System;
+                theme = this.user?.theme as AccountTheme.System;
             }
 
             if (theme === AccountTheme.System) {
@@ -67,6 +68,6 @@ export const useAuth = defineStore({
 
     getters: {
         loggedIn: state => !!state.user,
-        isAdmin: state => (state.user ? state.user.isAdmin : false)
+        isAdmin: state => (state.user ? state.user.role === UserRole.ADMIN : false)
     }
 });

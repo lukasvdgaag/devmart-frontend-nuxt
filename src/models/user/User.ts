@@ -1,13 +1,14 @@
 import { AccountTheme } from './AccountTheme.ts';
+import { UserRole } from '@/models/user/UserRole.ts';
 
-export default class User {
+export class User {
     id?: number;
     username?: string;
     email?: string;
     email_verified_at?: Date;
     discord_id?: string;
     discord_verified?: boolean;
-    role: string = 'user';
+    role: UserRole = UserRole.USER;
     theme: AccountTheme = AccountTheme.System;
     username_changed_at?: Date;
     spigot?: string;
